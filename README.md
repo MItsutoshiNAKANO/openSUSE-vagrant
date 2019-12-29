@@ -31,6 +31,7 @@ packer build -parallel=false definitions/15.1-x86_64.json
 
 ## Leap 15.1 with Japanese Keyboard
 
+**Building**
 
 ```bash
 packer build definitions/15.1Ja-x86_64.json
