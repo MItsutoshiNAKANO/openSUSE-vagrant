@@ -1,0 +1,228 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "netdevice=eth0 ",
+        "netsetup=dhcp ",
+        "lang=en_US ",
+        "textmode=1 ",
+        "autoyast=http://{{.HTTPIP}}:{{.HTTPPort}}/15.1{{user `autoyast_flavor`}}-general.xml ",
+        "<enter><wait>"
+      ],
+      "disk_size": 40960,
+      "guest_additions_mode": "attach",
+      "guest_os_type": "OpenSUSE_64",
+      "hard_drive_interface": "sata",
+      "headless": "{{user `headless`}}",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "name": "virtualbox",
+      "output_directory": "images/openSUSE-{{user `os`}}{{user `flavor`}}-virtualbox-{{user `arch`}}-{{user `version`}}",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -p",
+      "ssh_handshake_attempts": "120",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{user `memory`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "9"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{user `cpus`}}"
+        ]
+      ],
+      "vm_name": "opensuse-{{user `os`}}{{user `flavor`}}-{{user `arch`}}"
+    },
+    {
+      "accelerator": "{{user `qemu_accelerator`}}",
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "netdevice=eth0 ",
+        "netsetup=dhcp ",
+        "lang=en_US ",
+        "textmode=1 ",
+        "showopts ",
+        "autoyast=http://{{.HTTPIP}}:{{.HTTPPort}}/15.1-libvirt.xml ",
+        "<enter><wait>"
+      ],
+      "disk_interface": "virtio",
+      "disk_size": "40960M",
+      "format": "qcow2",
+      "headless": "{{user `headless`}}",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "name": "libvirt",
+      "net_device": "virtio-net",
+      "output_directory": "images/openSUSE-{{user `os`}}-libvirt-{{user `arch`}}-{{user `version`}}",
+      "qemuargs": [
+        [
+          "-m",
+          "{{user `memory`}}M"
+        ]
+      ],
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -p",
+      "ssh_handshake_attempts": "120",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "type": "qemu",
+      "vm_name": "opensuse-{{user `os`}}-{{user `arch`}}"
+    },
+    {
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "netdevice=eth0 ",
+        "netsetup=dhcp ",
+        "lang=en_US ",
+        "textmode=1 ",
+        "autoyast=http://{{.HTTPIP}}:{{.HTTPPort}}/15.1{{user `autoyast_flavor`}}-general.xml ",
+        "<enter><wait>"
+      ],
+      "disk_size": 40960,
+      "guest_os_type": "opensuse",
+      "hard_drive_interface": "sata",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "name": "parallels",
+      "output_directory": "images/openSUSE-{{user `os`}}{{user `flavor`}}-parallels-{{user `arch`}}-{{user `version`}}",
+      "parallels_tools_flavor": "lin",
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--memsize",
+          "{{user `memory`}}"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--cpus",
+          "{{user `cpus`}}"
+        ]
+      ],
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -p",
+      "ssh_handshake_attempts": "120",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "type": "parallels-iso",
+      "vm_name": "opensuse-{{user `os`}}-{{user `arch`}}"
+    },
+    {
+      "boot_command": [
+        "<esc><enter><wait>",
+        "linux ",
+        "biosdevname=0 ",
+        "net.ifnames=0 ",
+        "netdevice=eth0 ",
+        "netsetup=dhcp ",
+        "lang=en_US ",
+        "textmode=1 ",
+        "autoyast=http://{{.HTTPIP}}:{{.HTTPPort}}/15.1{{user `autoyast_flavor`}}-general.xml ",
+        "<enter><wait>"
+      ],
+      "disk_size": 40960,
+      "fusion_app_path": "{{user `fusion_path`}}",
+      "guest_os_type": "opensuse-64",
+      "headless": "{{user `headless`}}",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "name": "vmware",
+      "output_directory": "images/openSUSE-{{user `os`}}{{user `flavor`}}-vmware-{{user `arch`}}-{{user `version`}}",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -p",
+      "ssh_handshake_attempts": "120",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "tools_upload_flavor": "",
+      "type": "vmware-iso",
+      "vm_name": "opensuse-{{user `os`}}{{user `flavor`}}-{{user `arch`}}"
+    }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "only": [
+        "virtualbox",
+        "libvirt",
+        "parallels",
+        "vmware"
+      ],
+      "output": "images/openSUSE-{{user `os`}}{{user `flavor`}}-{{.Provider}}-{{user `arch`}}-{{user `version`}}.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "scripts": [
+        "scripts/base/wait.sh",
+        "scripts/base/base.sh",
+        "scripts/15.1/modify_repos.bash",
+        "scripts/15.1/stop_non_oss.bash",
+        "scripts/15.1/update.sh",
+        "scripts/base/kde_plasma.bash",
+        "scripts/base/devel_c.bash",
+        "scripts/base/vmtools.sh",
+        "scripts/base/sshd.sh",
+        "scripts/base/bindfs.sh",
+        "scripts/base/vagrant.sh",
+        "scripts/base/cleanup.sh",
+        "scripts/base/zerodisk.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "arch": "x86_64",
+    "autoyast_flavor": "{{user `locale`}}",
+    "cpus": "1",
+    "flavor": "{{user `locale`}}PlasmaDevelC",
+    "fusion_path": "/Applications/VMware Fusion.app",
+    "headless": "false",
+    "iso_checksum": "609d0ad527ab13681b44e28326cd7941e87adfe8d522e2b31d0d7c71e9d92992",
+    "iso_checksum_type": "sha256",
+    "iso_url": "https://download.opensuse.org/distribution/leap/15.1/iso/openSUSE-Leap-15.1-NET-x86_64.iso",
+    "locale": "Ja",
+    "memory": "2048",
+    "os": "15.1",
+    "qemu_accelerator": "kvm",
+    "version": "1.2.0"
+  }
+}
+
