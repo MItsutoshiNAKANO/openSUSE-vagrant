@@ -198,6 +198,7 @@
         "scripts/15.1/update.sh",
         "scripts/base/kde_plasma.bash",
         "scripts/base/devel_c.bash",
+	"scripts/base/additional_packages.bash",
         "scripts/base/vmtools.sh",
         "scripts/base/sshd.sh",
         "scripts/base/bindfs.sh",
@@ -222,7 +223,7 @@
     "memory": "2048",
     "os": "15.1",
     "qemu_accelerator": "kvm",
-    "version": "1.2.0"
+    "version": "1.3.0"
   }
 }
 
